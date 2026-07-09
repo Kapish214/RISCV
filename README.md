@@ -1,83 +1,85 @@
-# RISC-V Processor with Memory Subsystem and Systolic Array Integration
+# RISC-V Processor with Memory Subsystem and Systolic Array Accelerator
 
-## Overview
-
-This project implements a 32-bit pipelined RISC-V processor in Verilog with a complete memory subsystem consisting of a cache controller, AXI-style interconnect, interconnect controller, and memory controller. The project is being extended to integrate a systolic array accelerator for matrix multiplication.
+A Verilog implementation of a **32-bit pipelined RISC-V (RV32I) processor** integrated with a complete memory subsystem and a **4×4 systolic array hardware accelerator** for efficient matrix multiplication.
 
 ---
 
-## Features
+# Project Overview
 
-- RV32I 5-stage pipelined processor
+This project combines a custom pipelined RISC-V processor with a cache-based memory hierarchy and a systolic array accelerator. The processor communicates with the accelerator through a memory-mapped interface, enabling hardware acceleration of matrix multiplication workloads.
+
+The project demonstrates the complete hardware flow from instruction execution to cache access, AXI-style memory transactions, and systolic array computation.
+
+---
+
+# Architecture
+
+```
+                     +-----------------------+
+                     |   RISC-V Processor    |
+                     |   (5 Stage Pipeline)  |
+                     +----------+------------+
+                                |
+                                |
+                        MemRead / MemWrite
+                                |
+                                v
+                   +--------------------------+
+                   |    Memory Subsystem      |
+                   +------------+-------------+
+                                |
+            +-------------------+------------------+
+            |                                      |
+            |                                      |
+            v                                      v
+     +---------------+                  +----------------------+
+     |  Data Memory  |                  | 4×4 Systolic Array   |
+     |               |                  | Hardware Accelerator |
+     +---------------+                  +----------------------+
+```
+
+---
+
+# Features
+
+## Processor
+
+- RV32I ISA
+- 5-stage pipeline
+- Branch Predictor
 - Hazard Detection Unit
 - Forwarding Unit
-- Branch Predictor
-- Data Cache (2-Way Set Associative)
-- LRU Replacement Policy
-- Cache Controller
-- Memory Controller
-- AXI-style Interconnect
-- Interconnect Controller
-- Complete Memory Subsystem
-- Modular Verilog Design
-- Testbenches for individual modules and integrated system
-- GTKWave waveform support
-
----
-
-## Processor Pipeline
-
-```
-Instruction Fetch (IF)
-        │
-        ▼
-Instruction Decode (ID)
-        │
-        ▼
-Execute (EX)
-        │
-        ▼
-Memory Access (MEM)
-        │
-        ▼
-Write Back (WB)
-```
+- Pipeline Registers
+- ALU
+- Register File
 
 ---
 
 ## Memory Subsystem
 
-```
-Processor Pipeline
-        │
-        ▼
- Cache Controller
-        │
-        ▼
-Interconnect Controller
-        │
-        ▼
- AXI Interconnect
-        │
-        ▼
-Memory Controller
-        │
-        ▼
- Data Memory
-```
-
-The memory subsystem supports:
-
-- Cache Hits
-- Cache Miss Handling
-- AXI-style Read Transactions
-- AXI-style Write Transactions
-- Stall Generation
-- Memory Read/Write Handshaking
+- 2-Way Set Associative Cache
+- LRU Replacement Policy
+- Cache Controller
+- Memory Controller
+- AXI-style Interconnect
+- Interconnect Controller
+- Stall Handling
+- Cache Hit/Miss Logic
 
 ---
 
-## Directory Structure
+## Systolic Array Accelerator
+
+- 4×4 Processing Element (PE) Array
+- Matrix Multiplication Accelerator
+- Parallel Multiply-Accumulate (MAC)
+- Memory-Mapped Interface
+- Controller FSM
+- Accelerator Status Signals (Busy / Done)
+
+---
+
+# Directory Structure
 
 ```
 Branch_predictor/
@@ -89,41 +91,87 @@ Fetch/
 Interconnects/
 Memory/
 Pipeline/
-Systolic/          (Work in Progress)
+Systolic/
 Top/
 testbench/
 ```
 
 ---
 
-## Current Status
+# Processor Pipeline
 
-### Completed
-
-- RV32I Processor
-- Pipeline Registers
-- Hazard Detection
-- Forwarding
-- Branch Prediction
-- Cache Controller
-- Memory Controller
-- AXI Interconnect
-- Interconnect Controller
-- Integrated Memory Subsystem
-- Top-Level Integration
-- Individual Module Testbenches
-
-### Work in Progress
-
-- Systolic Array Accelerator
-- Memory-Mapped Accelerator Interface
-- Matrix Multiplication Support
+```
+IF → ID → EX → MEM → WB
+```
 
 ---
 
-## Simulation
+# Memory Flow
 
-Compile using Icarus Verilog:
+```
+Processor
+    │
+    ▼
+Cache Controller
+    │
+    ▼
+Interconnect Controller
+    │
+    ▼
+AXI Interconnect
+    │
+    ▼
+Memory Controller
+    │
+    ▼
+Data Memory
+```
+
+---
+
+# Systolic Array Flow
+
+```
+Processor
+
+↓
+
+Store Matrix A
+
+↓
+
+Store Matrix B
+
+↓
+
+Write START Register
+
+↓
+
+Systolic Controller
+
+↓
+
+4×4 Systolic Array
+
+↓
+
+Matrix Multiplication
+
+↓
+
+DONE Signal
+
+↓
+
+Processor Reads Result Matrix
+```
+
+---
+
+# Simulation
+
+### Compile
 
 ```bash
 iverilog -g2012 -Wall -o processor_sim \
@@ -152,16 +200,17 @@ Interconnects/axi_interconnects.v \
 Cache/cache_controller.v \
 Cache/data_cache.v \
 Cache/lru_memory.v \
-Memory/data_memory.v
+Memory/data_memory.v \
+Systolic/*.v
 ```
 
-Run:
+### Run
 
 ```bash
 vvp processor_sim
 ```
 
-View Waveforms:
+### View Waveforms
 
 ```bash
 gtkwave processor_system.vcd
@@ -169,31 +218,41 @@ gtkwave processor_system.vcd
 
 ---
 
-## Testbenches
+# Testbenches
 
-Available testbenches include:
-
+- Processor Pipeline
 - Cache Controller
 - Interconnect Controller
-- Interconnect + Memory Controller
+- Memory Controller
 - Memory Subsystem
-- Processor Pipeline
-- Complete Top-Level System
+- Systolic Array
+- Top-Level Integration
 
 ---
 
-## Future Improvements
+# Results
 
-- Systolic Array Accelerator
-- Matrix Multiplication Instructions
-- Memory-Mapped Accelerator Interface
+- Functional 5-stage RV32I Processor
+- Fully Integrated Memory Subsystem
+- AXI-style Memory Transactions
+- Cache Hit/Miss Handling
+- Hardware Matrix Multiplication using 4×4 Systolic Array
+- Successful End-to-End Simulation
+
+---
+
+# Future Improvements
+
+- Larger Systolic Arrays (8×8 / 16×16)
+- SIMD Extensions
+- DMA Support
+- L2 Cache
 - Performance Counters
-- Multi-Level Cache
-- Prefetching Support
+- Hardware Prefetcher
 
 ---
 
-## Tools Used
+# Tools
 
 - Verilog HDL
 - Icarus Verilog
@@ -202,8 +261,8 @@ Available testbenches include:
 
 ---
 
-## Author
+# Author
 
 **Kapish Eluri**
 
-IMTech ECE
+Integrated M.Tech, Electronics and Communication Engineering
