@@ -1,0 +1,316 @@
+$date
+	Tue Jul 07 02:18:52 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_interconnect_controller $end
+$var wire 4 ! master_write_strb [3:0] $end
+$var wire 1 " master_write_resp_ready $end
+$var wire 1 # master_write_data_valid $end
+$var wire 32 $ master_write_data [31:0] $end
+$var wire 1 % master_write_addr_valid $end
+$var wire 32 & master_write_addr [31:0] $end
+$var wire 1 ' master_read_data_ready $end
+$var wire 1 ( master_read_addr_valid $end
+$var wire 32 ) master_read_addr [31:0] $end
+$var wire 1 * cache_write_done $end
+$var wire 1 + cache_read_done $end
+$var wire 32 , cache_read_data [31:0] $end
+$var wire 1 - cache_busy $end
+$var reg 32 . cache_address [31:0] $end
+$var reg 1 / cache_read_req $end
+$var reg 32 0 cache_write_data [31:0] $end
+$var reg 1 1 cache_write_req $end
+$var reg 4 2 cache_write_strb [3:0] $end
+$var reg 1 3 clk $end
+$var reg 1 4 master_read_addr_ready $end
+$var reg 32 5 master_read_data [31:0] $end
+$var reg 1 6 master_read_data_valid $end
+$var reg 2 7 master_read_resp [1:0] $end
+$var reg 1 8 master_write_addr_ready $end
+$var reg 1 9 master_write_data_ready $end
+$var reg 2 : master_write_resp [1:0] $end
+$var reg 1 ; master_write_resp_valid $end
+$var reg 1 < rst $end
+$scope module dut $end
+$var wire 32 = cache_address [31:0] $end
+$var wire 1 / cache_read_req $end
+$var wire 32 > cache_write_data [31:0] $end
+$var wire 1 1 cache_write_req $end
+$var wire 4 ? cache_write_strb [3:0] $end
+$var wire 1 3 clk $end
+$var wire 1 4 master_read_addr_ready $end
+$var wire 32 @ master_read_data [31:0] $end
+$var wire 1 6 master_read_data_valid $end
+$var wire 2 A master_read_resp [1:0] $end
+$var wire 1 8 master_write_addr_ready $end
+$var wire 1 9 master_write_data_ready $end
+$var wire 2 B master_write_resp [1:0] $end
+$var wire 1 ; master_write_resp_valid $end
+$var wire 1 < rst $end
+$var parameter 3 C IDLE $end
+$var parameter 3 D READ_ADDR $end
+$var parameter 3 E READ_DATA $end
+$var parameter 3 F WRITE $end
+$var parameter 3 G WRITE_RESP $end
+$var reg 1 - cache_busy $end
+$var reg 32 H cache_read_data [31:0] $end
+$var reg 1 + cache_read_done $end
+$var reg 1 * cache_write_done $end
+$var reg 32 I master_read_addr [31:0] $end
+$var reg 1 ( master_read_addr_valid $end
+$var reg 1 ' master_read_data_ready $end
+$var reg 32 J master_write_addr [31:0] $end
+$var reg 1 % master_write_addr_valid $end
+$var reg 32 K master_write_data [31:0] $end
+$var reg 1 # master_write_data_valid $end
+$var reg 1 " master_write_resp_ready $end
+$var reg 4 L master_write_strb [3:0] $end
+$var reg 3 M next_state [2:0] $end
+$var reg 32 N req_address [31:0] $end
+$var reg 32 O req_write_data [31:0] $end
+$var reg 4 P req_write_strb [3:0] $end
+$var reg 3 Q state [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 G
+b11 F
+b10 E
+b1 D
+b0 C
+$end
+#0
+$dumpvars
+b0 Q
+b0 P
+b0 O
+b0 N
+b0 M
+b0 L
+b0 K
+b0 J
+b0 I
+b0 H
+b0 B
+b0 A
+b0 @
+b0 ?
+b0 >
+b0 =
+1<
+0;
+b0 :
+09
+08
+b0 7
+06
+b0 5
+04
+03
+b0 2
+01
+b0 0
+0/
+b0 .
+0-
+b0 ,
+0+
+0*
+b0 )
+0(
+0'
+b0 &
+0%
+b0 $
+0#
+0"
+b0 !
+$end
+#5000
+13
+#10000
+03
+#15000
+13
+#20000
+b1 M
+03
+1/
+b100000000 .
+b100000000 =
+0<
+#25000
+1(
+b100000000 )
+b100000000 I
+1-
+b100000000 N
+b1 Q
+13
+#30000
+1(
+b100000000 )
+b100000000 I
+03
+0/
+#35000
+13
+#40000
+b10 M
+1(
+b100000000 )
+b100000000 I
+03
+14
+#45000
+1'
+0(
+b0 )
+b0 I
+b10 Q
+13
+#50000
+1'
+03
+04
+#55000
+13
+#60000
+03
+#65000
+13
+#70000
+b0 M
+b10010001101000101011001111000 ,
+b10010001101000101011001111000 H
+1+
+1'
+03
+16
+b10010001101000101011001111000 5
+b10010001101000101011001111000 @
+#75000
+0'
+b0 ,
+b0 H
+0+
+0-
+b0 Q
+13
+#80000
+03
+06
+#85000
+13
+#90000
+03
+#95000
+13
+#100000
+b11 M
+03
+11
+b1111 2
+b1111 ?
+b11011110101011011011111011101111 0
+b11011110101011011011111011101111 >
+b1000000000 .
+b1000000000 =
+#105000
+1#
+b1111 !
+b1111 L
+b11011110101011011011111011101111 $
+b11011110101011011011111011101111 K
+1%
+b1000000000 &
+b1000000000 J
+1-
+b1111 P
+b11011110101011011011111011101111 O
+b1000000000 N
+b11 Q
+13
+#110000
+1#
+b1111 !
+b1111 L
+b11011110101011011011111011101111 $
+b11011110101011011011111011101111 K
+1%
+b1000000000 &
+b1000000000 J
+03
+01
+#115000
+13
+#120000
+b100 M
+1#
+b1111 !
+b1111 L
+b11011110101011011011111011101111 $
+b11011110101011011011111011101111 K
+1%
+b1000000000 &
+b1000000000 J
+03
+19
+18
+#125000
+1"
+0#
+b0 !
+b0 L
+b0 $
+b0 K
+0%
+b0 &
+b0 J
+b100 Q
+13
+#130000
+1"
+03
+09
+08
+#135000
+13
+#140000
+03
+#145000
+13
+#150000
+b0 M
+1*
+1"
+03
+1;
+#155000
+0"
+0*
+0-
+b0 Q
+13
+#160000
+03
+0;
+#165000
+13
+#170000
+03
+#175000
+13
+#180000
+03
+#185000
+13
+#190000
+03
