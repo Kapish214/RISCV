@@ -13,10 +13,13 @@ integer i;
 initial begin
     for(i=0;i<1024;i=i+1)
         data_mem[i] = 32'b0;
-    data_mem[25] = 50;
-    data_mem[26] = 20;
-    data_mem[27] = 30;
-    data_mem[28] = 40;
+    data_mem[25] = 101;
+    data_mem[26] = 102;
+    data_mem[27] = 103;
+    data_mem[28] = 104;
+    data_mem[29] = 105;
+    data_mem[30] = 106;
+    data_mem[31] = 107;
 end
     
 

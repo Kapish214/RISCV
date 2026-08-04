@@ -12,6 +12,8 @@ module ex_mem (
     output reg [31:0] write_data_out,
     output reg [4:0] rd_out,
     output reg RegWrite_out,
+    input [31:0] pc_in,
+    output reg [31:0] pc_out,
     output reg MemRead_out,
     output reg MemWrite_out,
     output reg MemToReg_out,
@@ -41,6 +43,7 @@ always @(posedge clk or posedge rst) begin
         Jump_out <= 0;
         SystolicOp_out <= 2'b00;
         rs1_out <= 32'd0;
+        pc_out <= 0;
     end
     else if (stall) begin
         // FREEZE: Keep the instruction causing the miss trapped here
@@ -55,6 +58,7 @@ always @(posedge clk or posedge rst) begin
         Jump_out <= Jump_out;
         SystolicOp_out <= SystolicOp_out;
         rs1_out <= rs1_out;
+        pc_out <= pc_out;
     end
     else begin
         // NORMAL operation
@@ -69,6 +73,7 @@ always @(posedge clk or posedge rst) begin
         Jump_out <= Jump_in;
         SystolicOp_out <= SystolicOp_in;
         rs1_out <= rs1_in;
+        pc_out <= pc_in;
     end
 end
 

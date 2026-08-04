@@ -241,6 +241,8 @@ module memory_subsystem(
     input  wire        MemRead,
     input  wire        MemWrite,
     input  wire [31:0] address,
+    input [31:0] pc,
+    input observe_enable,
     input  wire [31:0] write_data,
     output wire [31:0] read_data,
     output wire        stall
@@ -339,6 +341,9 @@ module memory_subsystem(
         .hit_way1(hit_way1),
         .miss(cache_miss),
         .cache_stall(stall),
+        .pc(pc),
+        .observe_enable(observe_enable),
+
         
         .cache_read_req(cache_read_req),
         .cache_write_req(cache_write_req),

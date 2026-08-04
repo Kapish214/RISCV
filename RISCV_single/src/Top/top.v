@@ -80,6 +80,7 @@ module top(
     wire [31:0] write_data;
     wire [31:0] read_data;
     wire        stall;
+    wire [31:0] mem_pc;
 
     // --- Systolic Array Interface Wires ---
     wire [1:0]  SystolicOp;         // 2-bit opcode from the CPU (WB stage -- used for the read/data mux timing)
@@ -104,6 +105,8 @@ module top(
     assign SystolicRead  = (SystolicOp == 2'b10);
 
     // --- Module Instantiations ---
+    
+
 
     processor_pipeline processor_inst(
         .clk(clk),
@@ -122,7 +125,8 @@ module top(
         .SystolicOpEarly(SystolicOpEarly),
         .result_index(result_index),
         .systolic_busy(systolic_busy),
-        .systolic_read_data(systolic_read_data)
+        .systolic_read_data(systolic_read_data),
+        .mem_pc(mem_pc)
     );
 
     systolic_controller systolic_inst(
@@ -143,7 +147,9 @@ module top(
         .address(address),
         .write_data(write_data),
         .read_data(read_data),
-        .stall(stall)
+        .stall(stall),
+        .observe_enable(MemRead),
+        .pc(mem_pc)
     );
 
 endmodule

@@ -408,7 +408,8 @@ module processor_pipeline(
     output [1:0]  SystolicOpEarly,   // ex_mem-stage copy, for triggering SystolicStart early
     output [4:0]  result_index,
     input         systolic_busy,
-    input  [31:0] systolic_read_data
+    input  [31:0] systolic_read_data,
+    output [31:0] mem_pc
 );
 
 wire bp_prediction_taken;
@@ -717,7 +718,9 @@ ex_mem ex_mem_inst(
     .pc_plus_4_out(ex_mem_pc_plus_4),
     .Jump_out(ex_mem_Jump),
     .SystolicOp_out(ex_mem_SystolicOp), // Emitting to MEM
-    .rs1_out(ex_mem_rs1)                // Emitting to MEM
+    .rs1_out(ex_mem_rs1),                // Emitting to MEM
+    .pc_in(id_ex_pc),
+    .pc_out(mem_pc)
 );
 
 mem_wb mem_wb_inst(
@@ -791,6 +794,20 @@ mem_wb_RegWrite,
 wb_data,
 systolic_read_data
 );
+end
+
+always @(posedge clk) begin
+    $display("--------------------------------");
+    $display("current_pc          = %h", current_pc);
+    $display("next_pc             = %h", next_pc);
+    $display("pc_increment        = %h", pc_increment);
+    $display("bp_prediction_taken = %b", bp_prediction_taken);
+    $display("bp_prediction_flush = %b", bp_prediction_flush);
+    $display("global_stall        = %b", global_stall);
+    $display("instr_code           = %h", instr_code);
+    $display("compressed           = %b", compressed);
+    $display("pc_increment         = %h", pc_increment);
+    $display("current_pc           = %h", current_pc);
 end
 
 endmodule

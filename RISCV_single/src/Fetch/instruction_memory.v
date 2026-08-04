@@ -5,8 +5,15 @@ module instr_mem(
 
 reg [7:0] instr_mem [0:255];
 
+integer i;
 
 initial begin
+    for(i=0; i<256; i=i+4) begin
+        instr_mem[i]   = 8'h13;
+        instr_mem[i+1] = 8'h00;
+        instr_mem[i+2] = 8'h00;
+        instr_mem[i+3] = 8'h00;
+    end
     $readmemh("program.mem", instr_mem);
 end
 

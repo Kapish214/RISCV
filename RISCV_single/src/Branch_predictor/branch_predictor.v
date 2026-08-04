@@ -73,6 +73,7 @@ wire [1:0] current_state = bht[ex_index];
 
 always @(posedge clk or posedge rst) begin
     if(rst) begin
+        $display("BP RESET");
         for(i=0; i<256; i=i+1) begin
             bht[i] <= 0;
             btb[i] <= 0;
@@ -116,6 +117,16 @@ always @(posedge clk or posedge rst) begin
             end
          end 
     end
+end
+always @(posedge clk) begin
+    $display("----- BP -----");
+    $display("prediction        = %b", prediction);
+    $display("prediction_taken  = %b", prediction_taken);
+    $display("btb_hit           = %b", btb_hit);
+    $display("predicted_target  = %h", predicted_target);
+    $display("next_pc = %h", next_pc);
+    $display("index   = %d", index);
+    $display("bht[%0d]= %b", index, bht[index]);
 end
 
 endmodule

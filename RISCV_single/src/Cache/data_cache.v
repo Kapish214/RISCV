@@ -48,4 +48,23 @@ always @(posedge clk or posedge rst) begin
     end
 end
 
+always @(posedge clk) begin
+    if(write_way0) begin
+        $display(
+        "[CACHE WRITE] t=%0t WAY0 index=%h line=%h",
+        $time,
+        index,
+        way0_new_line
+        );
+    end
+
+    if(write_way1) begin
+        $display(
+        "[CACHE WRITE] t=%0t WAY1 index=%h line=%h",
+        $time,
+        index,
+        way1_new_line
+        );
+    end
+end
 endmodule

@@ -1,0 +1,339 @@
+$date
+	Wed Jul 15 05:43:33 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module prefetch_table_tb $end
+$var wire 1 ! prefetch_valid $end
+$var wire 32 " prefetch_address [31:0] $end
+$var reg 1 # access_valid $end
+$var reg 1 $ clk $end
+$var reg 32 % memory_address [31:0] $end
+$var reg 1 & observe_enable $end
+$var reg 32 ' pc [31:0] $end
+$var reg 1 ( prefetch_accept $end
+$var reg 1 ) rst $end
+$scope module dut $end
+$var wire 1 # access_valid $end
+$var wire 1 $ clk $end
+$var wire 32 * memory_address [31:0] $end
+$var wire 1 & observe_enable $end
+$var wire 32 + pc [31:0] $end
+$var wire 1 ( prefetch_accept $end
+$var wire 1 ) rst $end
+$var wire 5 , index [4:0] $end
+$var parameter 32 - ADDR_LSB $end
+$var parameter 32 . ADDR_MSB $end
+$var parameter 2 / CONF_0 $end
+$var parameter 2 0 CONF_1 $end
+$var parameter 2 1 CONF_2 $end
+$var parameter 2 2 CONF_3 $end
+$var parameter 32 3 CONF_LSB $end
+$var parameter 32 4 CONF_MSB $end
+$var parameter 32 5 PC_LSB $end
+$var parameter 32 6 PC_MSB $end
+$var parameter 32 7 STRIDE_LSB $end
+$var parameter 32 8 STRIDE_MSB $end
+$var parameter 32 9 TABLE_SIZE $end
+$var parameter 32 : VALID_BIT $end
+$var reg 32 ; addr_diff [31:0] $end
+$var reg 12 < new_stride [11:0] $end
+$var reg 2 = next_conf [1:0] $end
+$var reg 32 > next_pred [31:0] $end
+$var reg 32 ? next_pred_2 [31:0] $end
+$var reg 32 @ pending_addr1 [31:0] $end
+$var reg 32 A pending_addr2 [31:0] $end
+$var reg 2 B pending_count [1:0] $end
+$var reg 32 C prefetch_address [31:0] $end
+$var reg 1 ! prefetch_valid $end
+$var reg 32 D sign_ext_stride [31:0] $end
+$var reg 1 E stride_match $end
+$var integer 32 F i [31:0] $end
+$upscope $end
+$scope task accept_prefetch $end
+$upscope $end
+$scope task access $end
+$var reg 32 G addr [31:0] $end
+$var reg 32 H pc_in [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1001111 :
+b100000 9
+b1110 8
+b11 7
+b1001110 6
+b101111 5
+b10 4
+b1 3
+b11 2
+b10 1
+b1 0
+b0 /
+b101110 .
+b1111 -
+$end
+#0
+$dumpvars
+bx H
+bx G
+b100000 F
+0E
+b0 D
+b0 C
+b0 B
+b0 A
+b0 @
+b0 ?
+b0 >
+bx =
+b0 <
+b0 ;
+b0 ,
+b0 +
+b0 *
+1)
+0(
+b0 '
+0&
+b0 %
+0$
+0#
+b0 "
+0!
+$end
+#5000
+b100000 F
+1$
+#10000
+0$
+#15000
+b100000 F
+1$
+#20000
+0$
+#25000
+b1100100 G
+b1000 H
+0)
+1$
+#30000
+b10 ,
+1#
+1&
+b1100100 %
+b1100100 *
+b1000 '
+b1000 +
+0$
+#35000
+b1100100 ?
+b1100100 >
+1E
+1$
+#40000
+b1101000 G
+0#
+0&
+0$
+#45000
+1$
+#50000
+b100 <
+b100 ;
+b1101000 ?
+b1101000 >
+0E
+1#
+1&
+b1101000 %
+b1101000 *
+0$
+#55000
+b100 D
+b1110000 ?
+b1101100 >
+b0 <
+b0 ;
+1$
+#60000
+b1101100 G
+0#
+0&
+0$
+#65000
+1$
+#70000
+1E
+b100 <
+b100 ;
+b1110100 ?
+b1110000 >
+b100 D
+1#
+1&
+b1101100 %
+b1101100 *
+0$
+#75000
+b1110100 ?
+b1110000 >
+0E
+b100 D
+b0 <
+b0 ;
+b1 =
+1$
+#80000
+b1110000 G
+0#
+0&
+0$
+#85000
+1$
+#90000
+1E
+b100 <
+b100 ;
+b1111000 ?
+b1110100 >
+b100 D
+1#
+1&
+b1110000 %
+b1110000 *
+0$
+#95000
+b1110100 "
+b1110100 C
+1!
+b1111000 ?
+b1110100 >
+0E
+b100 D
+b0 <
+b0 ;
+b10 B
+b1111000 A
+b1110100 @
+b10 =
+1$
+#100000
+0#
+0&
+0$
+#105000
+1$
+#110000
+1(
+0$
+#115000
+b1111000 "
+b1111000 C
+b1 B
+b0 A
+b1111000 @
+1$
+#120000
+b1110100 G
+0(
+0$
+#125000
+1$
+#130000
+1E
+b100 <
+b100 ;
+b1111100 ?
+b1111000 >
+b100 D
+1#
+1&
+b1110100 %
+b1110100 *
+0$
+#135000
+b1111100 ?
+b1111000 >
+0E
+b100 D
+b0 <
+b0 ;
+b11 =
+1$
+#140000
+0#
+0&
+0$
+#145000
+1$
+#150000
+1(
+0$
+#155000
+b0 "
+b0 C
+0!
+b0 B
+b0 @
+1$
+#160000
+b1111000 G
+0(
+0$
+#165000
+1$
+#170000
+1E
+b100 <
+b100 ;
+b10000000 ?
+b1111100 >
+b100 D
+1#
+1&
+b1111000 %
+b1111000 *
+0$
+#175000
+b10000000 ?
+b1111100 >
+0E
+b100 D
+b0 <
+b0 ;
+b1111100 "
+b1111100 C
+1!
+b10 B
+b10000000 A
+b1111100 @
+1$
+#180000
+0#
+0&
+0$
+#185000
+1$
+#190000
+0$
+#195000
+1$
+#200000
+0$
+#205000
+1$
+#210000
+0$
+#215000
+1$
+#220000
+0$
+#225000
+1$
