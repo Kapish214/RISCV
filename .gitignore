@@ -1,0 +1,36 @@
+# -----------------------------
+# Simulation waveforms
+# -----------------------------
+*.vcd
+
+# -----------------------------
+# Compiled executables
+# -----------------------------
+*.exe
+*.out
+a.out
+
+# Linux executables (no extension)
+cpu_sim
+cache_sim
+check
+interconnect_sim
+ic_only_sim
+ic_axi_mc_sim
+ic_axi_mem_sim
+mem_subsystem_sim
+memsys_only_sim
+memsys_sim
+top_sim
+sa_sim
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+run_log.txt
+
+# -----------------------------
+# Editor files
+# -----------------------------
+.vscode/settings.json
